@@ -1,0 +1,10 @@
+classes=10 train=3411 val=1136 test=2723 size=192
+datasets cached in 22s
+Resuming from models/checkpoints/epoch4_interrupted_run.pt (epoch 4, val_acc 0.9058); head stage skipped
+{"epoch": 5, "stage": "finetune", "train_loss": 0.5208703923595857, "train_acc": 0.9478158897683964, "val_acc": 0.914612676056338, "elapsed_s": 274}
+{"epoch": 6, "stage": "finetune", "train_loss": 0.5539885433284253, "train_acc": 0.9366754617414248, "val_acc": 0.9524647887323944, "elapsed_s": 516}
+{"epoch": 7, "stage": "finetune", "train_loss": 0.4476062142055638, "train_acc": 0.9783054822632659, "val_acc": 0.9621478873239436, "elapsed_s": 766}
+temperature=0.650 thresholds={'min_confidence': 0.55, 'min_margin': 0.15, 'min_max_logit': 3.3063805103302}
+TEST accuracy=0.9633 macroF1=0.9607 ECE 0.0453->0.0071 coverage=0.958 selective_acc=0.9777692602529705
+OOD other-crop leaves: {'n': 600, 'abstained': 232, 'abstention_rate': 0.38666666666666666, 'mean_confidence': 0.723854660987854, 'note': 'Healthy leaves of apple, maize, grape, bell pepper, potato and strawberry (never seen in training).'}
+Done. Model version: tomato-mnv3l-20261123-1025

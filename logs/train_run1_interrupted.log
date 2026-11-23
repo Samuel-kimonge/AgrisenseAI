@@ -1,0 +1,6 @@
+classes=10 train=3411 val=1136 test=2723 size=192
+datasets cached in 6s
+{"epoch": 1, "stage": "head", "train_loss": 1.986018096691211, "train_acc": 0.5602462620932278, "val_acc": 0.715669014084507, "elapsed_s": 119}
+{"epoch": 2, "stage": "head", "train_loss": 1.0190356539966983, "train_acc": 0.7660510114335972, "val_acc": 0.8204225352112676, "elapsed_s": 213}
+{"epoch": 3, "stage": "finetune", "train_loss": 0.8518269090350511, "train_acc": 0.821166813251246, "val_acc": 0.8609154929577465, "elapsed_s": 444}
+{"epoch": 4, "stage": "finetune", "train_loss": 0.6681804029482336, "train_acc": 0.8991498094400469, "val_acc": 0.9058098591549296, "elapsed_s": 666}

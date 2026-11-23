@@ -1,0 +1,132 @@
+{
+  "_meta": {
+    "title": "AgriSense AI Tomato Condition Guide",
+    "publisher": "AgriSense AI project (compiled from general, widely published agronomic knowledge)",
+    "publication_date": "2026-11",
+    "jurisdiction": "General guidance (East Africa context); not a legal pesticide registry",
+    "species": "tomato",
+    "version": "0.1",
+    "review_status": "DRAFT - pending review by a qualified agronomist / extension officer"
+  },
+  "conditions": {
+    "tomato_healthy": {
+      "name": "Healthy tomato leaf",
+      "category": "healthy",
+      "summary": "The leaf shows no clear signs of the diseases this model was trained on. This does not rule out root, stem, fruit or nutrient problems elsewhere on the plant.",
+      "symptoms": ["Even green colour", "No spots, mould, curling or mottling", "No webbing or insect damage visible"],
+      "possible_causes": [],
+      "prevention": ["Scout plants at least weekly, checking the undersides of leaves", "Stake and prune for good air flow", "Water at the base in the morning rather than wetting leaves", "Rotate tomatoes with non-solanaceous crops", "Use clean, certified seed or healthy transplants"],
+      "management": ["Keep up regular scouting and good field hygiene", "Take another photo if new spots appear"],
+      "get_help_if": ["New spots, curling or wilting appear and spread quickly"],
+      "confused_with": []
+    },
+    "tomato_early_blight": {
+      "name": "Early blight",
+      "category": "fungal disease",
+      "cause_organism": "Alternaria solani (fungus)",
+      "summary": "A common fungal leaf disease that usually starts on the older, lower leaves.",
+      "symptoms": ["Dark brown spots with concentric rings, like a target", "Yellow area around the spots", "Older leaves affected first; severely affected leaves yellow and drop", "Dark sunken lesions can appear on stems and near the fruit stalk"],
+      "possible_causes": ["Fungus that survives on crop residue and in soil", "Warm weather with alternating wet and dry periods, heavy dew or overhead watering", "Plant stress from poor nutrition, heavy fruit load or drought"],
+      "prevention": ["Rotate away from tomato, potato and related crops for two to three seasons", "Remove and destroy infected plant debris after harvest", "Stake and prune to improve air flow", "Use drip or base watering; avoid wetting leaves", "Mulch to reduce soil splash onto lower leaves", "Keep plants well fed and watered to reduce stress"],
+      "management": ["Remove heavily infected lower leaves and dispose of them away from the field", "Do not work in the crop when foliage is wet", "Ask a local extension officer or agro-vet which control products are registered and appropriate, and follow the label exactly"],
+      "get_help_if": ["Spread is moving to upper leaves or fruit", "More than a small part of the field is affected"],
+      "confused_with": ["tomato_target_spot", "tomato_septoria_leaf_spot"]
+    },
+    "tomato_late_blight": {
+      "name": "Late blight",
+      "category": "water-mould (oomycete) disease",
+      "cause_organism": "Phytophthora infestans",
+      "summary": "A fast-moving and potentially devastating disease, especially in cool, wet, humid weather. It can destroy a crop within days.",
+      "symptoms": ["Large, pale green to dark, water-soaked or greasy-looking patches on leaves", "Patches turn brown and papery; white fuzzy growth may appear underneath in humid conditions", "Dark brown lesions on stems", "Firm, brown, greasy-looking patches on fruit"],
+      "possible_causes": ["Spores spread by wind and rain from infected tomato or potato plants and volunteer plants", "Cool, wet weather with long leaf-wetness periods"],
+      "prevention": ["Plant certified healthy seedlings and, where available, tolerant varieties", "Destroy volunteer tomato and potato plants and cull piles", "Avoid overhead irrigation and water early in the day", "Space plants and prune for air flow", "Scout often during cool, wet spells"],
+      "management": ["Act quickly: report suspected late blight to a local extension officer or agro-vet the same day", "Remove and destroy badly infected plants (bag them or bury/burn according to local rules); do not compost them", "Do not move infected plant material or tools between fields without cleaning", "Control products must be chosen locally by a professional, because timing and registration matter"],
+      "get_help_if": ["You see these symptoms on more than a few plants", "Neighbouring potato or tomato fields are affected"],
+      "confused_with": ["tomato_early_blight", "tomato_septoria_leaf_spot"]
+    },
+    "tomato_bacterial_spot": {
+      "name": "Bacterial spot",
+      "category": "bacterial disease",
+      "cause_organism": "Xanthomonas species (bacteria)",
+      "summary": "A bacterial disease that spreads in splashing water and is difficult to cure once established, so prevention matters most.",
+      "symptoms": ["Small, dark, water-soaked spots on leaves that turn brown to black, often with a yellow halo", "Centres may dry and drop out, leaving a shot-hole look", "Small, raised, scabby spots on green fruit"],
+      "possible_causes": ["Contaminated seed or transplants", "Spread by rain splash, overhead irrigation and handling wet plants", "Warm, humid weather"],
+      "prevention": ["Buy certified disease-free seed and healthy transplants", "Avoid overhead irrigation", "Do not handle or tie plants when foliage is wet", "Rotate with non-host crops and remove crop residue", "Clean tools and hands between plots"],
+      "management": ["Remove and destroy severely affected plants", "Ask an extension officer which bactericide options, if any, are registered locally, and follow the label exactly", "Improve spacing and airflow"],
+      "get_help_if": ["Fruit is spotted", "Spread continues after removing affected leaves"],
+      "confused_with": ["tomato_septoria_leaf_spot", "tomato_target_spot"]
+    },
+    "tomato_leaf_mold": {
+      "name": "Leaf mold",
+      "category": "fungal disease",
+      "cause_organism": "Passalora fulva (fungus)",
+      "summary": "A fungal disease favoured by high humidity and poor ventilation, most common in greenhouses and dense crops.",
+      "symptoms": ["Pale green or yellowish patches on the upper leaf surface", "Olive-green to brown velvety mould on the underside of the leaf beneath those patches", "Leaves curl, wither and drop in severe cases"],
+      "possible_causes": ["Relative humidity persistently high, especially in greenhouses or tunnels", "Poor ventilation and crowded plants", "Leaf wetness"],
+      "prevention": ["Increase ventilation and reduce humidity in tunnels and greenhouses", "Space and prune plants for air flow", "Water at the base, early in the day", "Choose resistant varieties where available", "Remove crop residue after harvest"],
+      "management": ["Remove badly affected leaves", "Improve airflow immediately", "Ask an extension officer about locally registered products if spread continues"],
+      "get_help_if": ["The mould is spreading on upper leaves or fruit"],
+      "confused_with": ["tomato_septoria_leaf_spot"]
+    },
+    "tomato_septoria_leaf_spot": {
+      "name": "Septoria leaf spot",
+      "category": "fungal disease",
+      "cause_organism": "Septoria lycopersici (fungus)",
+      "summary": "A fungal disease that causes many small spots on leaves, usually starting low on the plant, and spreads in wet weather.",
+      "symptoms": ["Many small, round spots with dark borders and grey or tan centres", "Tiny dark specks may be visible inside the spots", "Lower leaves affected first; heavily spotted leaves yellow and drop", "Fruit is rarely affected"],
+      "possible_causes": ["Fungus carried over on crop debris and some weeds", "Splashing rain and overhead irrigation", "Warm, wet and humid weather"],
+      "prevention": ["Rotate crops and remove crop residue", "Mulch and stake to keep leaves off the soil", "Avoid overhead irrigation", "Control nightshade-family weeds", "Space plants for airflow"],
+      "management": ["Remove infected lower leaves and dispose of them away from the field", "Avoid working among wet plants", "Ask an extension officer which control options are registered locally"],
+      "get_help_if": ["Defoliation is moving up the plant and fruit is being exposed to sun"],
+      "confused_with": ["tomato_early_blight", "tomato_bacterial_spot"]
+    },
+    "tomato_spider_mites": {
+      "name": "Spider mites (two-spotted spider mite)",
+      "category": "pest (not a disease)",
+      "cause_organism": "Tetranychus urticae (mite)",
+      "summary": "Tiny sap-sucking mites, often building up in hot, dry, dusty conditions. This is a pest problem, not an infection.",
+      "symptoms": ["Fine yellow or white stippling on leaves", "Leaves turn bronze or dry and drop", "Fine webbing on the underside of leaves or between shoots in heavy infestations", "Tiny moving dots on the underside of leaves (use a hand lens)"],
+      "possible_causes": ["Hot, dry weather", "Dusty conditions", "Water-stressed plants", "Loss of natural enemies when broad-spectrum insecticides are used"],
+      "prevention": ["Keep plants adequately watered and reduce dust", "Check the underside of leaves regularly", "Avoid unnecessary broad-spectrum insecticide sprays that kill natural enemies", "Remove weedy hosts and crop residue"],
+      "management": ["Remove and destroy heavily infested leaves", "A strong spray of plain water on the underside of leaves can reduce numbers in small plantings", "Ask an extension officer or agro-vet about locally registered miticides and how to avoid resistance, and follow the label exactly"],
+      "get_help_if": ["Webbing is spreading across the plant", "The infestation returns quickly after treatment"],
+      "confused_with": ["tomato_yellow_leaf_curl_virus", "nutrient deficiency"]
+    },
+    "tomato_target_spot": {
+      "name": "Target spot",
+      "category": "fungal disease",
+      "cause_organism": "Corynespora cassiicola (fungus)",
+      "summary": "A fungal disease causing ringed brown spots that look similar to early blight.",
+      "symptoms": ["Brown spots with concentric rings and sometimes a yellow halo", "Spots can join together and cause leaf drop", "Lesions may also appear on stems and fruit"],
+      "possible_causes": ["Warm, humid conditions with long leaf-wetness periods", "Fungus carried over in crop debris", "Dense foliage"],
+      "prevention": ["Rotate crops and remove crop residue", "Prune and space plants for airflow", "Use base watering", "Scout older leaves regularly"],
+      "management": ["Remove heavily infected leaves", "Ask an extension officer which control options are registered locally", "Early blight and target spot look alike; a local expert can help tell them apart"],
+      "get_help_if": ["Fruit is affected or defoliation is spreading"],
+      "confused_with": ["tomato_early_blight"]
+    },
+    "tomato_yellow_leaf_curl_virus": {
+      "name": "Tomato yellow leaf curl virus",
+      "category": "viral disease (spread by whiteflies)",
+      "cause_organism": "Tomato yellow leaf curl virus, transmitted by whiteflies (Bemisia tabaci)",
+      "summary": "A virus spread by whiteflies. There is no cure for an infected plant, so control focuses on whiteflies and prevention.",
+      "symptoms": ["Leaves curl upward and inward and become small", "Yellowing of leaf edges", "Stunted plant with bushy growth", "Flowers drop and few fruit set, especially if infected young"],
+      "possible_causes": ["Infected plants or transplants", "Whiteflies feeding on infected plants and moving to healthy ones", "Weeds and nearby crops that host the virus or whiteflies"],
+      "prevention": ["Raise seedlings under insect-proof net", "Use tolerant or resistant varieties where available", "Control whiteflies and use yellow sticky traps to monitor them", "Remove weeds and crop residue; avoid planting next to older infected tomato crops", "Remove infected plants early"],
+      "management": ["Remove and destroy infected plants early, bagging them before removal so whiteflies do not spread", "Ask an extension officer about an integrated whitefly management plan appropriate to your area", "Similar symptoms can come from herbicide drift, nutrient problems or other viruses, so a professional check is worthwhile"],
+      "get_help_if": ["Several plants show curling", "Whiteflies are abundant in the field"],
+      "confused_with": ["herbicide injury", "nutrient deficiency", "tomato_mosaic_virus"]
+    },
+    "tomato_mosaic_virus": {
+      "name": "Tomato mosaic virus",
+      "category": "viral disease (spread by contact)",
+      "cause_organism": "Tomato mosaic virus (ToMV)",
+      "summary": "A very stable virus spread mainly by hands, tools and contaminated seed. There is no cure for infected plants.",
+      "symptoms": ["Light and dark green mottled (mosaic) pattern on leaves", "Leaves may be distorted, narrow or fern-like", "Stunted growth and reduced or uneven fruit ripening"],
+      "possible_causes": ["Contaminated seed or transplants", "Spread by hands, tools and clothing during pruning and handling", "Survives on crop debris and tools"],
+      "prevention": ["Use certified virus-free seed and tolerant varieties where available", "Wash hands with soap and disinfect tools between plants and plots", "Avoid handling tobacco products before working with plants", "Remove infected plants and crop residue", "Rotate crops and control weeds"],
+      "management": ["Remove and destroy infected plants rather than composting them", "Handle healthy plants before suspected infected ones", "Ask an extension officer to confirm the virus, because several viruses and nutrient problems can look similar"],
+      "get_help_if": ["Several plants show mottling", "You plan to save seed from affected plants (do not)"],
+      "confused_with": ["tomato_yellow_leaf_curl_virus", "herbicide injury", "nutrient deficiency"]
+    }
+  }
+}

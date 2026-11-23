@@ -1,0 +1,72 @@
+{
+  "model_version": "tomato-mnv3l-20261123-1025",
+  "architecture": "MobileNetV3-Large (timm mobilenetv3_large_100), ImageNet-pretrained, fine-tuned",
+  "class_keys": [
+    "tomato_bacterial_spot",
+    "tomato_early_blight",
+    "tomato_healthy",
+    "tomato_late_blight",
+    "tomato_leaf_mold",
+    "tomato_mosaic_virus",
+    "tomato_septoria_leaf_spot",
+    "tomato_spider_mites",
+    "tomato_target_spot",
+    "tomato_yellow_leaf_curl_virus"
+  ],
+  "class_names": {
+    "tomato_bacterial_spot": "Bacterial spot",
+    "tomato_early_blight": "Early blight",
+    "tomato_healthy": "Healthy tomato leaf",
+    "tomato_late_blight": "Late blight",
+    "tomato_leaf_mold": "Leaf mold",
+    "tomato_mosaic_virus": "Tomato mosaic virus",
+    "tomato_septoria_leaf_spot": "Septoria leaf spot",
+    "tomato_spider_mites": "Spider mites (two-spotted)",
+    "tomato_target_spot": "Target spot",
+    "tomato_yellow_leaf_curl_virus": "Yellow leaf curl virus"
+  },
+  "image_size": 192,
+  "temperature": 0.6496209116904224,
+  "thresholds": {
+    "min_confidence": 0.55,
+    "min_margin": 0.15,
+    "min_max_logit": 3.3063805103302
+  },
+  "trained_at": "2026-11-23T10:25:45.451982+00:00",
+  "training": {
+    "epochs_head": 0,
+    "epochs_finetune": 3,
+    "epochs_run": 7,
+    "batch_size": 32,
+    "train_cap_per_class": 350,
+    "val_cap_per_class": 120,
+    "n_train": 3411,
+    "n_val": 1136,
+    "n_test": 2723,
+    "resumed_from_epoch": 4,
+    "seed": 42,
+    "lr_head": 0.002,
+    "lr_finetune": 0.0004,
+    "wall_clock_minutes": 14.2
+  },
+  "metrics": {
+    "test_accuracy": 0.9632757987513771,
+    "test_macro_f1": 0.9607483514464163,
+    "test_ece_calibrated": 0.007136385820825152,
+    "test_coverage": 0.95813441057657,
+    "test_selective_accuracy": 0.9777692602529705,
+    "ood_other_crops": {
+      "n": 600,
+      "abstained": 232,
+      "abstention_rate": 0.38666666666666666,
+      "mean_confidence": 0.723854660987854,
+      "note": "Healthy leaves of apple, maize, grape, bell pepper, potato and strawberry (never seen in training)."
+    }
+  },
+  "libraries": {
+    "torch": "2.5.1+cu124",
+    "torchvision": "0.20.1+cu124",
+    "timm": "1.0.31"
+  },
+  "dataset": "PlantVillage (raw/color), tomato subset - controlled-environment photos; see DATASET.md"
+}

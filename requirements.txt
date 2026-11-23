@@ -1,0 +1,25 @@
+# Core UI
+streamlit>=1.40
+plotly>=5.24
+# ML
+torch>=2.2
+torchvision>=0.17
+timm>=1.0
+numpy>=1.26
+pandas>=2.1
+scikit-learn>=1.4
+pillow>=10.3
+opencv-python-headless>=4.9
+# Assistant / RAG
+langchain>=0.3
+langchain-core>=0.3
+langchain-community>=0.3
+chromadb>=0.5
+sentence-transformers>=3.0   # optional: only used when EMBEDDING_PROVIDER=sentence-transformers
+# Optional hosted/local LLM providers (install only the one you use)
+# langchain-anthropic
+# langchain-openai
+# langchain-ollama
+# Config / testing
+python-dotenv>=1.0
+pytest>=8.0
