@@ -1,0 +1,40 @@
+# Governing headless Service required by the StatefulSet (stable per-pod DNS names).
+apiVersion: v1
+kind: Service
+metadata:
+  name: agrisense-headless
+  labels:
+    app.kubernetes.io/name: agrisense-ai
+spec:
+  clusterIP: None
+  publishNotReadyAddresses: false
+  selector:
+    app.kubernetes.io/name: agrisense-ai
+    app.kubernetes.io/component: web
+  ports:
+    - name: http
+      port: 8501
+      targetPort: http
+---
+# Cluster-internal load balancer. ClientIP affinity keeps a browser on one replica when the
+# Service is used directly (port-forward / LoadBalancer). Through the Ingress, cookie
+# affinity (ingress.yaml) is used instead.
+apiVersion: v1
+kind: Service
+metadata:
+  name: agrisense
+  labels:
+    app.kubernetes.io/name: agrisense-ai
+spec:
+  type: ClusterIP
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 10800
+  selector:
+    app.kubernetes.io/name: agrisense-ai
+    app.kubernetes.io/component: web
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

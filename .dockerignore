@@ -1,0 +1,28 @@
+# Keep the build context small and free of secrets / data that must not ship in the image.
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+**/__pycache__
+**/*.pyc
+.pytest_cache
+.venv
+venv
+
+# Raw datasets, training artefacts, runtime state (rebuilt or mounted at runtime)
+data/raw
+data/processed
+data/agrisense.db
+chroma_db
+uploads
+logs
+models/checkpoints
+models/pretrained
+
+# Deployment files are not needed inside the image
+deploy
+docker-compose.yml
+Dockerfile
+.dockerignore
+*.md

@@ -108,3 +108,17 @@ def test_quality_gate_rarely_rejects_genuine_leaves():
     sample = man[man["split"] == "test"].groupby("label", group_keys=False).sample(n=12, random_state=11)
     rejected = sum(not assess_quality(Image.open(s.raw_data_dir / r.path).convert("RGB")).ok for r in sample.itertuples())
     assert rejected / len(sample) <= 0.05, f"{rejected}/{len(sample)} genuine leaves rejected by quality gate"
+
+
+# ----- shipped-artifact check: needs only models/production (works inside the Docker image) -----
+HAS_MODEL = (get_settings().production_model_dir / "model.pt").exists()
+
+
+@pytest.mark.skipif(not HAS_MODEL, reason="no trained model shipped")
+def test_shipped_model_loads_and_predicts_without_dataset():
+    p = PlantDiseasePredictor(get_settings())
+    assert p.available, p.error
+    assert len(p.class_keys) == 10 and p.meta["temperature"] > 0
+    r = p.predict(leaf_image())
+    assert r.status in ("ok", "uncertain") and len(r.top_k) == 3
+    assert abs(sum(c.probability for c in r.top_k) - 1) < 0.2  # top-3 of a 10-class softmax

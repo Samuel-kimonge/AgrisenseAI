@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: agrisense-config
+data:
+  # Non-secret settings (see .env.example). API keys live in the optional Secret.
+  LLM_PROVIDER: "none"              # none | anthropic | openai | ollama
+  LLM_MODEL: ""
+  EMBEDDING_PROVIDER: "hashing"     # offline; "sentence-transformers" needs model download access
+  RETRIEVAL_K: "4"
+  MIN_RELEVANCE: "0.30"
+  MAX_UPLOAD_MB: "8"
+  TORCH_THREADS: "2"                # keep <= the CPU limit of the container
+  OMP_NUM_THREADS: "2"
+  DATABASE_PATH: /data/agrisense.db
+  UPLOADS_DIR: /data/uploads
+  CHROMA_DIR: /data/chroma

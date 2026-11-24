@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: agrisense
+  labels:
+    app.kubernetes.io/part-of: agrisense-ai
+    # The pod spec below complies with the "restricted" Pod Security Standard.
+    pod-security.kubernetes.io/enforce: restricted
+    pod-security.kubernetes.io/enforce-version: latest

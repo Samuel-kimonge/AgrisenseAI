@@ -1,0 +1,118 @@
+# A StatefulSet (not a Deployment) because each replica owns its own SQLite history,
+# saved photos and vector index on its own ReadWriteOnce volume. SQLite must not live on a
+# shared network filesystem, and a RWO volume per pod avoids that. Replicas are balanced by
+# the (sticky) Ingress - see ingress.yaml.
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: agrisense
+  labels:
+    app.kubernetes.io/name: agrisense-ai
+    app.kubernetes.io/component: web
+spec:
+  serviceName: agrisense-headless
+  replicas: 2
+  podManagementPolicy: Parallel
+  updateStrategy:
+    type: RollingUpdate
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Retain         # never silently delete farmers' history
+    whenScaled: Retain          # scale back up and the same history reattaches
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: agrisense-ai
+      app.kubernetes.io/component: web
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: agrisense-ai
+        app.kubernetes.io/component: web
+    spec:
+      serviceAccountName: agrisense
+      automountServiceAccountToken: false
+      terminationGracePeriodSeconds: 60
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: agrisense-ai
+              app.kubernetes.io/component: web
+      containers:
+        - name: agrisense
+          image: agrisense-ai:latest          # overridden per overlay (images:)
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8501
+          envFrom:
+            - configMapRef:
+                name: agrisense-config
+          env:
+            - name: ANTHROPIC_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: agrisense-secrets
+                  key: ANTHROPIC_API_KEY
+                  optional: true
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: agrisense-secrets
+                  key: OPENAI_API_KEY
+                  optional: true
+          resources:
+            requests:
+              cpu: 500m
+              memory: 1Gi
+            limits:
+              cpu: "2"
+              memory: 2Gi
+          startupProbe:                      # model load + first-time knowledge-base indexing
+            httpGet: { path: /_stcore/health, port: http }
+            periodSeconds: 5
+            failureThreshold: 36             # up to 3 minutes
+          readinessProbe:
+            httpGet: { path: /_stcore/health, port: http }
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          livenessProbe:
+            httpGet: { path: /_stcore/health, port: http }
+            periodSeconds: 20
+            timeoutSeconds: 5
+            failureThreshold: 3
+          lifecycle:
+            preStop:
+              exec:
+                command: ["sleep", "10"]     # let the Ingress stop sending traffic first
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          volumeMounts:
+            - name: data
+              mountPath: /data
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: tmp
+          emptyDir:
+            sizeLimit: 512Mi
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 5Gi

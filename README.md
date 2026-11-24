@@ -98,4 +98,8 @@ See also `reports/model_cards/tomato_classifier.md` and `DATASET.md`.
 - Hashing embeddings can miss paraphrased questions; use neural embeddings and/or an LLM for better language coverage.
 - Single-user, local SQLite; no authentication.
 - Not built (by design): drones, satellite, IoT, irrigation control, ERP, marketplace, finance, outbreak/yield forecasting, other crops/species. Extension points: `src/ml/classes.py` + `scripts/train.py` for crops, `livestock_rules.json` for species/rules, new files in `data/knowledge_base/`.
-# AgrisenseAI
+
+## Deployment (Docker / Kubernetes)
+
+Container and cluster deployment files (Dockerfile, docker-compose with an nginx load balancer, Kubernetes manifests with
+sticky ingress and autoscaling) are described in [`deploy/README.md`](deploy/README.md).

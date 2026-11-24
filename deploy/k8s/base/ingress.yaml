@@ -1,0 +1,29 @@
+# Requires the ingress-nginx controller. Cookie affinity pins each browser session to one
+# replica (Streamlit session state, websocket and uploads are per-process).
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: agrisense
+  annotations:
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/affinity-mode: "persistent"   # do not move sessions when scaling out
+    nginx.ingress.kubernetes.io/session-cookie-name: "asroute"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "86400"
+    nginx.ingress.kubernetes.io/session-cookie-samesite: "Lax"
+    nginx.ingress.kubernetes.io/session-cookie-secure: "false"  # prod overlay sets this to true
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"          # 8 MB photos + multipart overhead
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"      # long-lived websocket
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: agrisense.localhost
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: agrisense
+                port:
+                  name: http

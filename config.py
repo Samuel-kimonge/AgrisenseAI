@@ -63,10 +63,17 @@ class Settings:
     min_relevance: float = float(_env("MIN_RELEVANCE", "0.30"))
 
     def ensure_dirs(self) -> None:
-        for p in (self.processed_dir, self.checkpoints_dir, self.production_model_dir,
-                  self.chroma_dir, self.uploads_dir, self.reports_dir / "evaluation",
-                  self.reports_dir / "model_cards", self.database_path.parent):
+        """Create the directories the running app writes to (these must succeed), and,
+        best-effort, the training/report directories. The latter may not be writable
+        in a read-only container, which is fine: only training uses them."""
+        for p in (self.chroma_dir, self.uploads_dir, self.database_path.parent):
             p.mkdir(parents=True, exist_ok=True)
+        for p in (self.processed_dir, self.checkpoints_dir, self.production_model_dir,
+                  self.reports_dir / "evaluation", self.reports_dir / "model_cards"):
+            try:
+                p.mkdir(parents=True, exist_ok=True)
+            except OSError:
+                pass
 
 
 def get_settings() -> Settings:

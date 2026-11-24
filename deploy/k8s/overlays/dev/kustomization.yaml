@@ -1,0 +1,42 @@
+# Small cluster (kind / minikube / k3d): one replica, no autoscaler, no disruption budget.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+images:
+  - name: agrisense-ai
+    newName: agrisense-ai          # load with: kind load docker-image agrisense-ai:dev
+    newTag: dev
+patches:
+  - target: {kind: HorizontalPodAutoscaler, name: agrisense}
+    patch: |-
+      $patch: delete
+      apiVersion: autoscaling/v2
+      kind: HorizontalPodAutoscaler
+      metadata:
+        name: agrisense
+  - target: {kind: PodDisruptionBudget, name: agrisense}
+    patch: |-
+      $patch: delete
+      apiVersion: policy/v1
+      kind: PodDisruptionBudget
+      metadata:
+        name: agrisense
+  - target: {kind: StatefulSet, name: agrisense}
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 1
+      - op: replace
+        path: /spec/template/spec/containers/0/resources
+        value:
+          requests: {cpu: 250m, memory: 768Mi}
+          limits: {cpu: "1", memory: 1536Mi}
+  - target: {kind: ConfigMap, name: agrisense-config}
+    patch: |-
+      - op: replace
+        path: /data/TORCH_THREADS
+        value: "1"
+      - op: replace
+        path: /data/OMP_NUM_THREADS
+        value: "1"
